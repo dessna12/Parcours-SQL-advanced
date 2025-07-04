@@ -255,4 +255,22 @@ ORDER BY score_moyen DESC;
 
 -- -- Dump completed on 2025-07-04 17:46:42
 
+-------------------------------phase 4--------------------------------------
+
+-- mysql> grant select on gameworld.scores  to 'analyste@localhost';
+-- Query OK, 0 rows affected (0.02 sec)
+
+-- mysql> grant select on gameworld.sessions  to 'analyste@localhost';
+-- Query OK, 0 rows affected (0.01 sec)
+
+-- mysql> show grants for 'analyste@localhost';
+-- +--------------------------------------------------------------------+
+-- | Grants for analyste@localhost@%                                    |
+-- +--------------------------------------------------------------------+
+-- | GRANT USAGE ON *.* TO `analyste@localhost`@`%`                     |
+-- | GRANT SELECT ON `gameworld`.`joueurs` TO `analyste@localhost`@`%`  |
+-- | GRANT SELECT ON `gameworld`.`scores` TO `analyste@localhost`@`%`   |
+-- | GRANT SELECT ON `gameworld`.`sessions` TO `analyste@localhost`@`%` |
+-- +--------------------------------------------------------------------+
+-- 4 rows in set (0.00 sec)
 
