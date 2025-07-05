@@ -86,11 +86,14 @@ JOIN sessions s ON j.id = s.id_jeu
 JOIN scores sc ON s.id = sc.id_session
 GROUP BY j.id, j.titre
 ORDER BY score_moyen DESC;
+
+
 --tester connexion via cmd de mysql
 -- exercice phase 3 :>mysqldump -u root -p GameWorld
 
 
--- -------------------------------------------------------- creer le backup de gameworld entier
+-- -creer le backup de gameworld entier----voir dans le repertoir sauvegarde -------
+
 -- mysqldump -u root -p GameWorld > gameworld_backup
 -- Enter password: ****   
 -- --voir gameworld_backup.sql--
@@ -98,7 +101,8 @@ ORDER BY score_moyen DESC;
 -- Query OK, 7 rows affected (0.38 sec)
 
 -- mysql>
-----------------------------------------------RESTOR gameworld-----------------------------------------
+-------------------------RESTORE gameworld-----------------------------------------
+
 --C:\Users\Stagiaire>mysqldump -u root -p gameworld < gameworld_backup
 --Enter password: ****
 -- MySQL dump 10.13  Distrib 8.4.5, for Win64 (x86_64)
@@ -273,4 +277,53 @@ ORDER BY score_moyen DESC;
 -- | GRANT SELECT ON `gameworld`.`sessions` TO `analyste@localhost`@`%` |
 -- +--------------------------------------------------------------------+
 -- 4 rows in set (0.00 sec)
+
+
+
+--bonus--
+
+
+-- CREATE VIEW vue_scores_moyens AS
+-- SELECT
+--     j.pseudo,
+--     AVG(s.score) AS score_moyen
+-- FROM
+--     joueurs j
+-- LEFT JOIN
+--     scores s ON j.id = s.id_joueur
+-- GROUP BY
+--     j.id, j.pseudo;
+
+--     CREATE VIEW vue_scores_moyens AS
+--     -> SELECT
+--     ->     j.pseudo,
+--     ->     AVG(s.score) AS score_moyen
+--     -> FROM
+--     ->     joueurs j
+--     -> LEFT JOIN
+--     ->     scores s ON j.id = s.id_joueur
+--     -> GROUP BY
+--     ->     j.id, j.pseudo;
+-- Query OK, 0 rows affected (0.09 sec)
+
+-- mysql> SELECT * FROM vue_scores_moyens;
+-- +--------------+-------------+
+-- | pseudo       | score_moyen |
+-- +--------------+-------------+
+-- | ShadowKiller |   1400.0000 |
+-- | Elfae        |   1314.4000 |
+-- | NoobMaster69 |   1090.0000 |
+-- | Z3r0Cool     |    985.0000 |
+-- | PixelPro     |   1166.6667 |
+-- | MissClick    |   1350.0000 |
+-- | LagWizard    |   1216.5000 |
+-- | Headshotz    |   1119.5000 |
+-- | ManaQueen    |   1310.0000 |
+-- | StunLock     |   1025.0000 |
+-- | AltF4        |    920.0000 |
+-- | AFKLord      |   1050.0000 |
+-- +--------------+-------------+
+-- 12 rows in set (0.02 sec)
+
+-- mysql>
 
