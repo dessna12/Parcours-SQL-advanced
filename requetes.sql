@@ -283,16 +283,16 @@ ORDER BY score_moyen DESC;
 --bonus--
 
 
--- CREATE VIEW vue_scores_moyens AS
--- SELECT
---     j.pseudo,
---     AVG(s.score) AS score_moyen
--- FROM
---     joueurs j
--- LEFT JOIN
---     scores s ON j.id = s.id_joueur
--- GROUP BY
---     j.id, j.pseudo;
+CREATE VIEW vue_scores_moyens AS
+SELECT
+    j.pseudo,
+    AVG(s.score) AS score_moyen
+FROM
+    joueurs j
+LEFT JOIN
+    scores s ON j.id = s.id_joueur
+GROUP BY
+    j.id, j.pseudo;
 
 --     CREATE VIEW vue_scores_moyens AS
 --     -> SELECT
